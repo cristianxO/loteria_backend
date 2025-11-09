@@ -21,8 +21,6 @@ public class Billete {
     @Column(nullable = false)
     private double precio;
 
-    @NotNull
-    @Column(nullable = false)
     private Boolean estado;
 
     @ManyToOne
@@ -32,4 +30,5 @@ public class Billete {
     @ManyToOne
     @JoinColumn(name = "sorteo_id")
     private Sorteo sorteo;
+
 }
