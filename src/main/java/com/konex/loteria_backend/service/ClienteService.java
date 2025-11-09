@@ -6,10 +6,8 @@ import com.konex.loteria_backend.exception.ClienteExistenteException;
 import com.konex.loteria_backend.exception.ClienteNoExistenteException;
 import com.konex.loteria_backend.mapper.BilleteMapper;
 import com.konex.loteria_backend.mapper.ClienteMapper;
-import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.model.Cliente;
 import com.konex.loteria_backend.repository.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

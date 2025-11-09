@@ -3,11 +3,13 @@ package com.konex.loteria_backend.service;
 import com.konex.loteria_backend.dto.BilleteDTO;
 import com.konex.loteria_backend.dto.SorteoDTO;
 import com.konex.loteria_backend.exception.BilleteNoExistenteException;
+import com.konex.loteria_backend.exception.BilleteVendidoException;
 import com.konex.loteria_backend.exception.SorteoNoExistenteException;
 import com.konex.loteria_backend.mapper.BilleteMapper;
 import com.konex.loteria_backend.mapper.SorteoMapper;
 import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.model.Cliente;
+import com.konex.loteria_backend.model.EstadoBillete;
 import com.konex.loteria_backend.model.Sorteo;
 import com.konex.loteria_backend.repository.BilleteRepository;
 import com.konex.loteria_backend.repository.ClienteRepository;
@@ -60,7 +62,10 @@ public class SorteoService {
         if (billete.isEmpty()) {
             throw new BilleteNoExistenteException("El billete no existe en el sorteo "+sorteo.get().getNombreSorteo());
         }
-        billete.get().setEstado(true);
+        if (billete.get().getEstado().equals(EstadoBillete.VENDIDO)) {
+            throw new BilleteVendidoException("El billete con el numero "+billete.get().getNumero()+" ya se encuentra vendido");
+        }
+        billete.get().setEstado(EstadoBillete.VENDIDO);
         billete.get().setDuenio(cliente.get());
         billeteRepository.save(billete.get());
         return billeteMapper.convertirBilleteABilleteDTO(billete.get());

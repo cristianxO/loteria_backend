@@ -13,6 +13,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
+    @ExceptionHandler(BilleteVendidoException.class)
+    public ResponseEntity<String> handleBilleteVendidoException(BilleteVendidoException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
     @ExceptionHandler(ClienteNoExistenteException.class)
     public ResponseEntity<String> handleClienteNoExistenteException(ClienteNoExistenteException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());

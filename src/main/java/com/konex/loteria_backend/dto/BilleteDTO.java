@@ -1,5 +1,6 @@
 package com.konex.loteria_backend.dto;
 
+import com.konex.loteria_backend.model.EstadoBillete;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +12,5 @@ public class BilleteDTO {
     private int id;
     private int numero;
     private double precio;
-    private boolean estado;
+    private EstadoBillete estado;
 }

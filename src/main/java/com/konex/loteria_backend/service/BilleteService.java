@@ -1,16 +1,13 @@
 package com.konex.loteria_backend.service;
 
 import com.konex.loteria_backend.dto.BilleteDTO;
-import com.konex.loteria_backend.exception.BilleteNoExistenteException;
 import com.konex.loteria_backend.exception.SorteoNoExistenteException;
 import com.konex.loteria_backend.mapper.BilleteMapper;
 import com.konex.loteria_backend.model.Billete;
-import com.konex.loteria_backend.model.Cliente;
+import com.konex.loteria_backend.model.EstadoBillete;
 import com.konex.loteria_backend.model.Sorteo;
 import com.konex.loteria_backend.repository.BilleteRepository;
-import com.konex.loteria_backend.repository.ClienteRepository;
 import com.konex.loteria_backend.repository.SorteoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -35,7 +32,7 @@ public class BilleteService {
         if (sorteo.isEmpty()) {
             throw new SorteoNoExistenteException("El sorteo al que desea asociar no existe.");
         }
-        billete.setEstado(false);
+        billete.setEstado(EstadoBillete.DISPONIBLE);
         billete.setSorteo(sorteo.get());
         billeteRepository.save(billete);
         return billeteMapper.convertirBilleteABilleteDTO(billete);

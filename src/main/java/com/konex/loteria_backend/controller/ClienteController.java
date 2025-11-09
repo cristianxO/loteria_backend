@@ -2,12 +2,9 @@ package com.konex.loteria_backend.controller;
 
 import com.konex.loteria_backend.dto.BilleteDTO;
 import com.konex.loteria_backend.dto.ClienteDTO;
-import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.model.Cliente;
-import com.konex.loteria_backend.service.BilleteService;
 import com.konex.loteria_backend.service.ClienteService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-
 
     private final ClienteService clienteService;
 

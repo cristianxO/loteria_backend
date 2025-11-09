@@ -21,7 +21,8 @@ public class Billete {
     @Column(nullable = false)
     private double precio;
 
-    private Boolean estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoBillete estado;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
