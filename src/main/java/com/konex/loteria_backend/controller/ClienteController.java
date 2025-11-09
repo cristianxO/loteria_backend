@@ -1,6 +1,7 @@
 package com.konex.loteria_backend.controller;
 
 import com.konex.loteria_backend.dto.BilleteDTO;
+import com.konex.loteria_backend.dto.ClienteDTO;
 import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.model.Cliente;
 import com.konex.loteria_backend.service.BilleteService;
@@ -25,8 +26,8 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> crearCliente(@Valid @RequestBody Cliente cliente) {
-        Cliente clienteCreado = clienteService.crearCliente(cliente);
+    public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody Cliente cliente) {
+        ClienteDTO clienteCreado = clienteService.crearCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteCreado);
     }
 

@@ -1,7 +1,9 @@
 package com.konex.loteria_backend.service;
 
+import com.konex.loteria_backend.dto.BilleteDTO;
 import com.konex.loteria_backend.exception.BilleteNoExistenteException;
 import com.konex.loteria_backend.exception.SorteoNoExistenteException;
+import com.konex.loteria_backend.mapper.BilleteMapper;
 import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.model.Cliente;
 import com.konex.loteria_backend.model.Sorteo;
@@ -20,15 +22,15 @@ public class BilleteService {
 
     private final SorteoRepository sorteoRepository;
 
-    private final ClienteRepository clienteRepository;
+    private final BilleteMapper billeteMapper;
 
-    public BilleteService(BilleteRepository billeteRepository, SorteoRepository sorteoRepository, ClienteRepository clienteRepository) {
+    public BilleteService(BilleteRepository billeteRepository, SorteoRepository sorteoRepository, BilleteMapper billeteMapper) {
         this.billeteRepository = billeteRepository;
         this.sorteoRepository = sorteoRepository;
-        this.clienteRepository = clienteRepository;
+        this.billeteMapper = billeteMapper;
     }
 
-    public Billete crearBillete(Billete billete, int idSorteo) {
+    public BilleteDTO crearBillete(Billete billete, int idSorteo) {
         Optional<Sorteo> sorteo = sorteoRepository.findById(idSorteo);
         if (sorteo.isEmpty()) {
             throw new SorteoNoExistenteException("El sorteo al que desea asociar no existe.");
@@ -36,24 +38,6 @@ public class BilleteService {
         billete.setEstado(false);
         billete.setSorteo(sorteo.get());
         billeteRepository.save(billete);
-        return billete;
-    }
-
-    public void venderBillete(int idCliente, int idSorteo, int idBillete) {
-        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
-        if (cliente.isEmpty()) {
-            throw new SorteoNoExistenteException("El cliente no existe.");
-        }
-        Optional<Sorteo> sorteo = sorteoRepository.findById(idSorteo);
-        if (sorteo.isEmpty()) {
-            throw new SorteoNoExistenteException("El sorteo no existe");
-        }
-        Optional<Billete> billete = billeteRepository.findById(idBillete);
-        if (billete.isEmpty()) {
-            throw new BilleteNoExistenteException("El billete no existe en el sorteo "+sorteo.get().getNombreSorteo());
-        }
-        billete.get().setEstado(true);
-        billete.get().setDuenio(cliente.get());
-        billeteRepository.save(billete.get());
+        return billeteMapper.convertirBilleteABilleteDTO(billete);
     }
 }

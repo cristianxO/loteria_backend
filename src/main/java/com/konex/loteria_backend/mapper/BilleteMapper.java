@@ -9,7 +9,10 @@ import java.util.List;
 @Component
 public class BilleteMapper {
     public BilleteDTO convertirBilleteABilleteDTO(Billete billete) {
-        return new BilleteDTO(billete.getId(),billete.getNumero(),billete.getPrecio(),billete.getEstado());
+        return new BilleteDTO(billete.getId(),
+                            billete.getNumero(),
+                            billete.getPrecio(),
+                            billete.getEstado());
     }
 
     public List<BilleteDTO> convertirBilletesABilletesDTO(List<Billete> billetes) {

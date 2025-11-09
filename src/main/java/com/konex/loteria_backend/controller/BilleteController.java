@@ -1,5 +1,6 @@
 package com.konex.loteria_backend.controller;
 
+import com.konex.loteria_backend.dto.BilleteDTO;
 import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.service.BilleteService;
 import jakarta.validation.Valid;
@@ -18,14 +19,8 @@ public class BilleteController {
     }
 
     @PostMapping("/{idSorteo}")
-    public ResponseEntity<Billete> crearBillete(@Valid @RequestBody Billete billete, @PathVariable int idSorteo) {
-        Billete billeteCreado = billeteService.crearBillete(billete,idSorteo);
+    public ResponseEntity<BilleteDTO> crearBillete(@Valid @RequestBody Billete billete, @PathVariable int idSorteo) {
+        BilleteDTO billeteCreado = billeteService.crearBillete(billete,idSorteo);
         return ResponseEntity.status(HttpStatus.CREATED).body(billeteCreado);
-    }
-
-    @PatchMapping("/{idCliente}/{idSorteo}/{idBillete}")
-    public ResponseEntity<Void> venderBillete(@PathVariable int idCliente,@PathVariable int idSorteo,@PathVariable int idBillete) {
-        billeteService.venderBillete(idCliente,idSorteo,idBillete);
-        return ResponseEntity.ok().build();
     }
 }
