@@ -1,5 +1,6 @@
 package com.konex.loteria_backend.controller;
 
+import com.konex.loteria_backend.dto.BilleteDTO;
 import com.konex.loteria_backend.model.Billete;
 import com.konex.loteria_backend.model.Cliente;
 import com.konex.loteria_backend.service.BilleteService;
@@ -30,7 +31,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{idCliente}/billetes")
-    public ResponseEntity<List<Billete>> listarBilletesComprados(@PathVariable int idCliente) {
+    public ResponseEntity<List<BilleteDTO>> listarBilletesComprados(@PathVariable int idCliente) {
         return ResponseEntity.ok(clienteService.listarBilletesComprados(idCliente));
     }
 }

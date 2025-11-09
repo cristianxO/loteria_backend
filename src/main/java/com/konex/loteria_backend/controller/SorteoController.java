@@ -1,5 +1,6 @@
 package com.konex.loteria_backend.controller;
 
+import com.konex.loteria_backend.dto.SorteoDTO;
 import com.konex.loteria_backend.model.Sorteo;
 import com.konex.loteria_backend.service.SorteoService;
 import jakarta.validation.Valid;
@@ -26,7 +27,7 @@ public class SorteoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Sorteo>> listarSorteos() {
+    public ResponseEntity<List<SorteoDTO>> listarSorteos() {
         return ResponseEntity.ok(sorteoService.listarSorteos());
     }
 }
