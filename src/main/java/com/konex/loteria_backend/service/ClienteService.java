@@ -43,4 +43,8 @@ public class ClienteService {
         }
         return billeteMapper.convertirBilletesABilletesDTO(cliente.get().getBilletes());
     }
+
+    public List<ClienteDTO> listarClientes() {
+        return clienteMapper.convertirClientesAClientesDTO(clienteRepository.findAll());
+    }
 }

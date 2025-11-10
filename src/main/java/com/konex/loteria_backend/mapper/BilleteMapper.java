@@ -16,6 +16,8 @@ public class BilleteMapper {
     }
 
     public List<BilleteDTO> convertirBilletesABilletesDTO(List<Billete> billetes) {
+        if (billetes == null) 
+            return null;
         return billetes.stream().map(this::convertirBilleteABilleteDTO).toList();
     }
 }

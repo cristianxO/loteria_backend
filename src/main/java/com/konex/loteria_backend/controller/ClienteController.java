@@ -31,4 +31,9 @@ public class ClienteController {
     public ResponseEntity<List<BilleteDTO>> listarBilletesComprados(@PathVariable int idCliente) {
         return ResponseEntity.ok(clienteService.listarBilletesComprados(idCliente));
     }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteDTO>> listarClientes() {
+        return ResponseEntity.ok(clienteService.listarClientes());
+    }
 }
